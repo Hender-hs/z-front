@@ -58,7 +58,6 @@
 	  convenios: [],
 	  parcela: 0
 	};
-	
 	const url = `http://127.0.0.1:8000/api/simular`;
 
 	const res = await axios.post(url, payload);
@@ -69,12 +68,12 @@
 
 <template>
   <div class="box">
-	<label>Valor do Emprestimo </label>
+	<label>Valor do Empréstimo </label>
 	<div class="input-section"> 
 	  <p>R$</p> 
 	  <input @keyup="inputChangeHandler" v-model="moneyAmount.value" class="input" placeholder=""/> 
 	</div>
-	<button @click="requestHandler" class="button" >Solicitar</button>
+	<button :disabled="!moneyAmount.value" @click="requestHandler" class="button" >Solicitar</button>
   </div>
   <div v-if="response.value.length">
 	<h4>Resultados</h4>
@@ -114,6 +113,7 @@
 	padding: 5px 15px;
 	border: none;
 	border-radius: 5px;
+	cursor: pointer;
   }
   .boxes-body {
 	display: flex;
